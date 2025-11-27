@@ -1,0 +1,12 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.description }}</p>
+
+<p>Created: {{ post.created_at }}</p>
+<br>
+<hr>
+
+<p>
+<a href="{% url 'post_update' post.slug %}">Edit</a><br>
+<a href="{% url 'post_delete' post.slug %}">Delete</a><br>
+<a href="{% url 'post_list' %}">Back to List</a>
+</p>
