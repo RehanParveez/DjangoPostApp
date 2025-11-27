@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 
 class Post(models.Model):
@@ -16,6 +17,13 @@ class Post(models.Model):
     
     slug = models.SlugField(unique=True, blank=True)
     
-    
+def save(self, *args, **kwargs):
+    if not self.id:
+        super().save(*args, **kwargs)
+    if not self.slug:
+        base_slug = slugify(self.title)
+        self.slug = f"{base_slug}-{self.id}"
+    super().save(*args, **kwargs)
+
     
     

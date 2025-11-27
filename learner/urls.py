@@ -1,11 +1,12 @@
 from django.urls import path
-from learner.views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
+from learner.views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, RegisterView
 
 urlpatterns = [
     path('', PostListView.as_view(), name='post_list'),
-    path('postdetail/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
+    path('postregister/', RegisterView.as_view(), name='register'),
+    path('postdetail/<slug:slug>/', PostDetailView.as_view(), name='post_detail'),
     path('postcreate/', PostCreateView.as_view(), name='post_create'),
-    path('postupdate/<int:pk>/', PostUpdateView.as_view(), name='post_update'),
-    path('postdelete/<int:pk>/', PostDeleteView.as_view(), name='post_delete'),
+    path('postupdate/<slug:slug>/', PostUpdateView.as_view(), name='post_update'),
+    path('postdelete/<slug:slug>/', PostDeleteView.as_view(), name='post_delete'),
 ]
 
